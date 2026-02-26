@@ -14,6 +14,6 @@ public class Product: BaseEntity
     public decimal Price { get; set; }
 
     //Relations
-    public ProductType Types { get; set; } 
-    public ProductBrand Brands { get; set; }
+    public ProductType Type { get; set; } 
+    public ProductBrand Brand { get; set; }
 }
