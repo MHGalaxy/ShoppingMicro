@@ -2,15 +2,14 @@
 using Catalog.Core.Repositories;
 using Catalog.Infrastructure.Data;
 using MongoDB.Driver;
-using MongoDB.Driver.Search;
 
 namespace Catalog.Infrastructure.Repositories;
 
 public class ProductRepository(ICatalogContext context) : IProductRepository
 {
-    public async Task<IEnumerable<Product>> GetAllAsync() => await context.Products.Find(x => true).ToListAsync();
+    public async Task<IEnumerable<Product>> GetAllProductsAsync() => await context.Products.Find(x => true).ToListAsync();
 
-    public async Task<Product> GetByIdAsync(string id) => await context.Products.Find(x => x.Id == id).FirstOrDefaultAsync();
+    public async Task<Product> GetProductByIdAsync(string id) => await context.Products.Find(x => x.Id == id).FirstOrDefaultAsync();
 
     public async Task<IEnumerable<Product>> GetProductByNameAsync(string name) => await context.Products.Find(x => x.Name == name).ToListAsync();
 
