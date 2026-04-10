@@ -8,9 +8,13 @@ public class ProductMapper : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        // Entity -> DTO
         config.NewConfig<Product, ProductDto>();
-
         config.NewConfig<ProductDto, Product>();
+
+        config.NewConfig<ProductBrand, ProductBrandDto>();
+        config.NewConfig<ProductBrandDto, ProductBrand>();
+
+        config.NewConfig<ProductType, ProductTypeDto>();
+        config.NewConfig<ProductTypeDto, ProductType>();
     }
 }

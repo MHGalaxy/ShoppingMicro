@@ -3,14 +3,15 @@ using Catalog.Core.Repositories;
 using MapsterMapper;
 using MediatR;
 
-namespace Catalog.Application.Queries;
+namespace Catalog.Application.Queries.Product;
 
 public class GetAllProductsQuery : IRequest<IEnumerable<ProductDto>>
 {
     //Filters
 }
 
-public class GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper) : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>
+public class GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper)
+    : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>
 {
     public async Task<IEnumerable<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
     {
