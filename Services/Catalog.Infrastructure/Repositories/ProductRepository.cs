@@ -11,15 +11,15 @@ public class ProductRepository(ICatalogContext context) : IProductRepository
 
     public async Task<Product> GetProductByIdAsync(string id) => await context.Products.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-    public async Task<IEnumerable<Product>> GetProductByNameAsync(string name) => await context.Products.Find(x => x.Name == name).ToListAsync();
+    public async Task<IEnumerable<Product>> GetProductsByNameAsync(string name) => await context.Products.Find(x => x.Name == name).ToListAsync();
 
-    public async Task<IEnumerable<Product>> GetProductByTypeAsync(string type) => await context.Products.Find(x => x.Type.Name == type).ToListAsync();
+    public async Task<IEnumerable<Product>> GetProductsByTypeAsync(string type) => await context.Products.Find(x => x.Type.Name == type).ToListAsync();
 
-    public async Task<IEnumerable<Product>> GetProductByTypeIdAsync(string typeId) => await context.Products.Find(x => x.Type.Id == typeId).ToListAsync();
+    public async Task<IEnumerable<Product>> GetProductsByTypeIdAsync(string typeId) => await context.Products.Find(x => x.Type.Id == typeId).ToListAsync();
 
-    public async Task<IEnumerable<Product>> GetProductByBrandAsync(string brand) => await context.Products.Find(x => x.Brand.Name == brand).ToListAsync();
+    public async Task<IEnumerable<Product>> GetProductsByBrandAsync(string brand) => await context.Products.Find(x => x.Brand.Name == brand).ToListAsync();
 
-    public async Task<IEnumerable<Product>> GetProductByBrandIdAsync(string brandId) => await context.Products.Find(x => x.Brand.Id == brandId).ToListAsync();
+    public async Task<IEnumerable<Product>> GetProductsByBrandIdAsync(string brandId) => await context.Products.Find(x => x.Brand.Id == brandId).ToListAsync();
 
     public async Task<bool> UpdateProductAsync(Product product)
     {
