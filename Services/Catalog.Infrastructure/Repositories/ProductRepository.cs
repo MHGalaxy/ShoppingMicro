@@ -21,11 +21,18 @@ public class ProductRepository(ICatalogContext context) : IProductRepository
 
     public async Task<IEnumerable<Product>> GetProductsByBrandIdAsync(string brandId) => await context.Products.Find(x => x.Brand.Id == brandId).ToListAsync();
 
+    public async Task<Product> CreateProductAsync(Product product)
+    {
+        await context.Products.InsertOneAsync(product);
+        return product;
+    }
+
     public async Task<bool> UpdateProductAsync(Product product)
     {
         var result = await context.Products.ReplaceOneAsync(x => x.Id == product.Id, product);
         return result.IsAcknowledged && result.ModifiedCount > 0;
     }
+
     public async Task<bool> DeleteProductAsync(string id)
     {
         var result = await context.Products.DeleteOneAsync(x => x.Id == id);
@@ -33,5 +40,5 @@ public class ProductRepository(ICatalogContext context) : IProductRepository
     }
 
     public async Task<bool> DeleteProductAsync(Product product) => await DeleteProductAsync(product.Id);
-    
+
 }

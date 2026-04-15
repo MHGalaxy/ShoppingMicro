@@ -1,4 +1,5 @@
-﻿using Catalog.Application.Responses;
+﻿using Catalog.Application.Commands.Product;
+using Catalog.Application.Responses;
 using Catalog.Core.Entities;
 using Mapster;
 
@@ -16,5 +17,11 @@ public class ProductMapper : IRegister
 
         config.NewConfig<ProductType, ProductTypeDto>();
         config.NewConfig<ProductTypeDto, ProductType>();
+
+        config.NewConfig<CreateProductCommand, Product>();
+        config.NewConfig<Product, CreateProductCommand>();
+
+        config.NewConfig<UpdateProductCommand, Product>();
+        config.NewConfig<Product, UpdateProductCommand>();
     }
 }

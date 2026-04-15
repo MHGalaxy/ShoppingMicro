@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace Catalog.Core.Entities;
 
-public class Product: BaseEntity
+public class Product : BaseEntity
 {
     [BsonElement(nameof(Name))]
     public string Name { get; set; }
@@ -14,6 +14,6 @@ public class Product: BaseEntity
     public decimal Price { get; set; }
 
     //Relations
-    public ProductType Type { get; set; } 
+    public ProductType Type { get; set; }
     public ProductBrand Brand { get; set; }
 }
