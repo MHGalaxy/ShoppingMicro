@@ -7,6 +7,11 @@ namespace Catalog.Application.Queries.Product;
 public class DeleteProductCommand : IRequest<bool>
 {
     public string Id { get; set; }
+
+    public DeleteProductCommand(string id)
+    {
+        Id = id;    
+    }
 }
 
 public class DeleteProductCommandHandler(IProductRepository productRepository)
