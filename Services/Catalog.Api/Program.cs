@@ -1,4 +1,9 @@
+using Catalog.Core.Abstractions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Register all services using installers
+InstallServices(builder.Services, builder.Configuration);
 
 // Add services to the container.
 
@@ -24,8 +29,28 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+//app.UseHttpsRedirection();
+//app.UseCors("AllowAll");
+//app.UseRouting();
 app.UseAuthorization();
-
 app.MapControllers();
+//app.MapHealthChecks("/health"); // Optional health check endpoint
 
 app.Run();
+
+
+// Helper method to discover and install all services
+static void InstallServices(IServiceCollection services, IConfiguration configuration)
+{
+    var installers = AppDomain.CurrentDomain.GetAssemblies()
+        .SelectMany(assembly => assembly.GetTypes())
+        .Where(type => typeof(IServiceInstaller).IsAssignableFrom(type) &&
+                       type is { IsInterface: false, IsAbstract: false })
+        .Select(Activator.CreateInstance)
+        .Cast<IServiceInstaller>();
+
+    foreach (var installer in installers)
+    {
+        installer.Install(services, configuration);
+    }
+}
