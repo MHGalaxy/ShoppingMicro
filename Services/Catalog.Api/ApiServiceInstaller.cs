@@ -7,8 +7,19 @@ public class ApiServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddOpenApi();
+        services.AddEndpointsApiExplorer();
+
         // Register Controllers
         services.AddControllers();
+
+        services.AddControllers();
+        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "Catalog.Api", Version = "v1", Description = "Catalog API" });
+        }); //Create document of swagger
 
         // Register API Versioning
         services.AddApiVersioning(config =>

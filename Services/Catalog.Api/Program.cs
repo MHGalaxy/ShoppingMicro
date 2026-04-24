@@ -5,16 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Register all services using installers
 InstallServices(builder.Services, builder.Configuration);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "Catalog.Api", Version = "v1", Description = "Catalog API" });
-}); //Create document of swagger
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,12 +19,12 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-//app.UseHttpsRedirection();
-//app.UseCors("AllowAll");
-//app.UseRouting();
+app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
-//app.MapHealthChecks("/health"); // Optional health check endpoint
+app.MapHealthChecks("/health"); // Optional health check endpoint
 
 app.Run();
 
