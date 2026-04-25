@@ -1,8 +1,15 @@
 <Solution>
-  <Folder Name="/Services/">
-    <Project Path="Services/Catalog.Api/Catalog.Api.csproj" />
-    <Project Path="Services/Catalog.Application/Catalog.Application.csproj" />
-    <Project Path="Services/Catalog.Core/Catalog.Core.csproj" />
-    <Project Path="Services/Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
+  <Folder Name="/Services/" />
+  <Folder Name="/Services/Basket/">
+    <Project Path="Services/Basket/Basket.Api/Basket.Api.csproj" Id="622a8ba3-0530-4740-afda-33d04e9480e4" />
+    <Project Path="Services/Basket/Basket.Application/Basket.Application.csproj" Id="ed11fb11-3c8e-4e73-924f-5069af4fc61b" />
+    <Project Path="Services/Basket/Basket.Core/Basket.Core.csproj" Id="66b6e629-c0b6-4115-abcb-e9f227ff9f6c" />
+    <Project Path="Services/Basket/Basket.Infrastructure/Basket.Infrastructure.csproj" Id="bd1d2104-9ddb-4652-b82a-eba40f2abc74" />
+  </Folder>
+  <Folder Name="/Services/Catalog/">
+    <Project Path="Services/Catalog/Catalog.Api/Catalog.Api.csproj" />
+    <Project Path="Services/Catalog/Catalog.Application/Catalog.Application.csproj" />
+    <Project Path="Services/Catalog/Catalog.Core/Catalog.Core.csproj" />
+    <Project Path="Services/Catalog/Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
   </Folder>
 </Solution>
