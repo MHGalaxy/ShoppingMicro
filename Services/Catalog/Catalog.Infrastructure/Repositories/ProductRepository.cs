@@ -1,5 +1,6 @@
 ﻿using Catalog.Core.Entities;
 using Catalog.Core.Repositories;
+using Catalog.Core.SpecsParams;
 using Catalog.Infrastructure.Data;
 using MongoDB.Driver;
 
@@ -7,7 +8,10 @@ namespace Catalog.Infrastructure.Repositories;
 
 public class ProductRepository(ICatalogContext context) : IProductRepository
 {
-    public async Task<IEnumerable<Product>> GetAllProductsAsync() => await context.Products.Find(x => true).ToListAsync();
+    public async Task<IEnumerable<Product>> GetAllProductsAsync(CatalogSpecsParams specsParams)
+    {
+        return await context.Products.Find(x => true).ToListAsync();
+    }
 
     public async Task<Product> GetProductByIdAsync(string id) => await context.Products.Find(x => x.Id == id).FirstOrDefaultAsync();
 
