@@ -3,8 +3,8 @@ using Catalog.Application.Queries.Product;
 using Catalog.Application.Queries.ProductBrand;
 using Catalog.Application.Queries.ProductType;
 using Catalog.Application.Responses;
+using Catalog.Core.SpecsParams;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Api.Controllers;
@@ -17,9 +17,9 @@ public class CatalogController(IMediator mediator) : ApiController
 
     // api/v1/catalog/GetAllProducts
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> GetAllProducts(CancellationToken cancellationToken)
+    public async Task<ActionResult<Pagination<ProductDto>>> GetAllProducts([FromQuery]GetAllProductsQuery request, CancellationToken cancellationToken)
     {
-        return Ok(await mediator.Send(new GetAllProductsQuery(), cancellationToken));
+        return Ok(await mediator.Send(request, cancellationToken));
     }
 
     // api/v1/catalog/GetProductById/{id}

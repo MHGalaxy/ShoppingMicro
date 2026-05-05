@@ -2,15 +2,6 @@
 
 public class CommonSpecsParams
 {
-    //private int _pageSize { get; set; } = 10;
-    //private int _maxPageSize { get; set; } = 100;
-    //public int PageSize 
-    //{ 
-    //    get => _pageSize; 
-    //    set => _pageSize = value > _maxPageSize ? _maxPageSize : value; 
-    //}
-
-    private int _pageSize { get; set; } = 10;
     private int _maxPageSize { get; set; } = 100;
     public int PageSize
     {
@@ -19,6 +10,14 @@ public class CommonSpecsParams
     }
 
     public int PageIndex { get; set; } = 0;
-    public string Sort { get; set; }
+    public string SortField { get; set; }
+    public SortType SortType { get; set; } = SortType.Asc;
     public string Search { get; set; } 
+}
+
+
+public enum SortType
+{
+    Asc = 0,
+    Desc = 1,
 }
