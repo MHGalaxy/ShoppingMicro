@@ -4,7 +4,7 @@ namespace Basket.Core.Repositories;
 
 public interface IBasketRepository
 {
-    Task<ShoppingCart> GetBasketAsync(string userName);
-    Task<ShoppingCart> UpdateBasketAsync(ShoppingCart shoppingCart);
+    Task<ShoppingCart?> GetBasketAsync(string userName);
+    Task<ShoppingCart?> UpdateBasketAsync(ShoppingCart shoppingCart);
     Task<bool> DeleteBasketAsync(string userName);
 }
