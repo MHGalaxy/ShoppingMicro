@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Catalog.Application.Queries.Product;
+
 //using Catalog.Application.Behaviors;
 using Catalog.Core.Abstractions;
 using Mapster;
@@ -14,11 +16,14 @@ public class ApplicationServiceInstaller : IServiceInstaller
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
         // Register MediatR
+        var assemblies = new Assembly[]
+        {
+            Assembly.GetExecutingAssembly(),
+            typeof(GetAllProductsQueryHandler).Assembly
+        };
+
         services.AddMediatR(cfg => {
-            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            // Add pipeline behaviors(optional)
-            // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            cfg.RegisterServicesFromAssemblies(assemblies);
         });
 
         // Register Mapster with DI
@@ -27,13 +32,6 @@ public class ApplicationServiceInstaller : IServiceInstaller
 
         services.AddSingleton(config);
         services.AddScoped<IMapper, ServiceMapper>();
-
-        // OR using Mapster.DependencyInjection extension method
-        //services.AddMapster(Assembly.GetExecutingAssembly());
-        //services.AddMapster(); ???
-
-        // Register validators (if using FluentValidation)
-        // services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
     }
 }

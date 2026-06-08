@@ -12,8 +12,8 @@ namespace Catalog.Api.Controllers;
 public class CatalogController(IMediator mediator) : ApiController
 {
 
-    //IActiionResult: unknown output type
-    //ActiionResult: with output type
+    //IActionResult: unknown output type
+    //ActionResult: with output type
 
     // api/v1/catalog/GetAllProducts
     [HttpGet]
