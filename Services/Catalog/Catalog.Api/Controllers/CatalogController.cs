@@ -17,7 +17,7 @@ public class CatalogController(IMediator mediator) : ApiController
 
     // api/v1/catalog/GetAllProducts
     [HttpGet]
-    public async Task<ActionResult<Pagination<ProductDto>>> GetAllProducts([FromQuery]GetAllProductsQuery request, CancellationToken cancellationToken)
+    public async Task<ActionResult<Pagination<ProductDto>>> GetAllProducts([FromQuery] GetAllProductsQuery request, CancellationToken cancellationToken)
     {
         return Ok(await mediator.Send(request, cancellationToken));
     }

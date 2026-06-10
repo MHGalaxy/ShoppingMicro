@@ -1,5 +1,4 @@
-﻿using Catalog.Core.Abstractions;
-using Catalog.Core.Repositories;
+﻿using Catalog.Core.Repositories;
 using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
@@ -9,9 +8,9 @@ using MongoDB.Driver;
 
 namespace Catalog.Infrastructure;
 
-public class InfrastructureServiceInstaller : IServiceInstaller
+public static class InfrastructureServicesRegisteration
 {
-    public void Install(IServiceCollection services, IConfiguration configuration)
+    public static void ConfigureInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
         var mongoConnectionString = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
         var mongoDatabaseName = configuration.GetValue<string>("DatabaseSettings:DatabaseName");

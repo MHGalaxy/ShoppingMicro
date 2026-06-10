@@ -1,19 +1,14 @@
 ﻿using System.Reflection;
 using Catalog.Application.Queries.Product;
-
-//using Catalog.Application.Behaviors;
-using Catalog.Core.Abstractions;
 using Mapster;
 using MapsterMapper;
-using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Catalog.Application;
 
-public class ApplicationServiceInstaller : IServiceInstaller
+public static class ApplicationServicesRegisteration
 {
-    public void Install(IServiceCollection services, IConfiguration configuration)
+    public static void ConfigureApplicationServices(this IServiceCollection services)
     {
         // Register MediatR
         var assemblies = new Assembly[]

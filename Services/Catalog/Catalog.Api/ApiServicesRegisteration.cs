@@ -3,23 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Api;
 
-public class ApiServiceInstaller : IServiceInstaller
+public static class ApiServicesRegisteration
 {
-    public void Install(IServiceCollection services, IConfiguration configuration)
+    public static void ConfigureApiServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddOpenApi();
+        services.AddControllers();
+        services.AddAuthorization();
         services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
 
-        // Register Controllers
-        services.AddControllers();
-
-        services.AddControllers();
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-
+        //Create document of swagger
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "Catalog.Api", Version = "v1", Description = "Catalog API" });
-        }); //Create document of swagger
+        }); 
 
         // Register API Versioning
         services.AddApiVersioning(config =>
@@ -42,9 +39,6 @@ public class ApiServiceInstaller : IServiceInstaller
 
         // Register Health Checks (if you want to expose health endpoints)
         services.AddHealthChecks();
-
-        // Add API Explorer
-        services.AddEndpointsApiExplorer();
 
         // Add Response Caching if needed
         services.AddResponseCaching();
