@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Catalog.Application.Queries.Product;
 
-public class GetProductByIdQuery : IRequest<ProductDto>
+public class GetProductByIdQuery : IRequest<ProductResponse>
 {
     public string Id { get; set; }
     public GetProductByIdQuery(string id)
@@ -15,13 +15,13 @@ public class GetProductByIdQuery : IRequest<ProductDto>
 }
 
 public class GetProductByIdQueryHandler(IProductRepository productRepository, IMapper mapper)
-    : IRequestHandler<GetProductByIdQuery, ProductDto>
+    : IRequestHandler<GetProductByIdQuery, ProductResponse>
 {
-    public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ProductResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
         var result = await productRepository.GetProductByIdAsync(request.Id);
         if (result == null) throw new Exception($"The product id: {request.Id} is not found");
 
-        return mapper.Map<ProductDto>(result);
+        return mapper.Map<ProductResponse>(result);
     }
 }

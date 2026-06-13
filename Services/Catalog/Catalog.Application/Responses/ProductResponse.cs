@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Application.Responses;
 
-public class ProductDto
+public class ProductResponse
 {
     public string Id { get; set; }
     public string Name { get; set; }
@@ -8,6 +8,6 @@ public class ProductDto
     public string Description { get; set; }
     public string ImageFile { get; set; }
     public decimal Price { get; set; }
-    public ProductTypeDto Type { get; set; }
-    public ProductBrandDto Brand { get; set; }
+    public ProductTypeResponse Type { get; set; }
+    public ProductBrandResponse Brand { get; set; }
 }

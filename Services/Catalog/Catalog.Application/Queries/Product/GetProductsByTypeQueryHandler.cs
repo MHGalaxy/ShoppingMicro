@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Catalog.Application.Queries.Product;
 
-public class GetProductsByTypeQuery : IRequest<IEnumerable<ProductDto>>
+public class GetProductsByTypeQuery : IRequest<IEnumerable<ProductResponse>>
 {
     public string TypeName { get; set; }
     public GetProductsByTypeQuery(string typeName)
@@ -15,11 +15,11 @@ public class GetProductsByTypeQuery : IRequest<IEnumerable<ProductDto>>
 }
 
 public class GetProductsByTypeQueryHandler(IProductRepository productRepository, IMapper mapper)
-    : IRequestHandler<GetProductsByTypeQuery, IEnumerable<ProductDto>>
+    : IRequestHandler<GetProductsByTypeQuery, IEnumerable<ProductResponse>>
 {
-    public async Task<IEnumerable<ProductDto>> Handle(GetProductsByTypeQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ProductResponse>> Handle(GetProductsByTypeQuery request, CancellationToken cancellationToken)
     {
         var result = await productRepository.GetProductsByTypeAsync(request.TypeName);
-        return mapper.Map<IEnumerable<ProductDto>>(result);
+        return mapper.Map<IEnumerable<ProductResponse>>(result);
     }
 }

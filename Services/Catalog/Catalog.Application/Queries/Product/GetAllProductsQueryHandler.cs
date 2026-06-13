@@ -6,17 +6,17 @@ using MediatR;
 
 namespace Catalog.Application.Queries.Product;
 
-public class GetAllProductsQuery : ProductSpecsParams, IRequest<Pagination<ProductDto>>
+public class GetAllProductsQuery : ProductSpecsParams, IRequest<Pagination<ProductResponse>>
 {
     //Filters
 }
 
 public class GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper)
-    : IRequestHandler<GetAllProductsQuery, Pagination<ProductDto>>
+    : IRequestHandler<GetAllProductsQuery, Pagination<ProductResponse>>
 {
-    public async Task<Pagination<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+    public async Task<Pagination<ProductResponse>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
     {
         var result = await productRepository.GetAllProductsAsync(request);
-        return mapper.Map<Pagination<ProductDto>>(result);
+        return mapper.Map<Pagination<ProductResponse>>(result);
     }
 }

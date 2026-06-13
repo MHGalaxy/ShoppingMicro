@@ -14,8 +14,8 @@ public class UpdateProductCommand : IRequest<bool>
     public string Description { get; set; }
     public string ImageFile { get; set; }
     public decimal Price { get; set; }
-    public ProductTypeDto Type { get; set; }
-    public ProductBrandDto Brand { get; set; }
+    public ProductTypeResponse Type { get; set; }
+    public ProductBrandResponse Brand { get; set; }
 }
 
 public class UpdateProductCommandHandler(IProductRepository productRepository, IMapper mapper)

@@ -10,17 +10,17 @@ public class ProductMapper : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Product, ProductDto>();
-        config.NewConfig<ProductDto, Product>();
+        config.NewConfig<Product, ProductResponse>();
+        config.NewConfig<ProductResponse, Product>();
 
-        config.NewConfig<Pagination<Product>, Pagination<ProductDto>>();
-        config.NewConfig<Pagination<ProductDto>, Pagination<Product>>();
+        config.NewConfig<Pagination<Product>, Pagination<ProductResponse>>();
+        config.NewConfig<Pagination<ProductResponse>, Pagination<Product>>();
 
-        config.NewConfig<ProductBrand, ProductBrandDto>();
-        config.NewConfig<ProductBrandDto, ProductBrand>();
+        config.NewConfig<ProductBrand, ProductBrandResponse>();
+        config.NewConfig<ProductBrandResponse, ProductBrand>();
 
-        config.NewConfig<ProductType, ProductTypeDto>();
-        config.NewConfig<ProductTypeDto, ProductType>();
+        config.NewConfig<ProductType, ProductTypeResponse>();
+        config.NewConfig<ProductTypeResponse, ProductType>();
 
         config.NewConfig<CreateProductCommand, Product>();
         config.NewConfig<Product, CreateProductCommand>();
