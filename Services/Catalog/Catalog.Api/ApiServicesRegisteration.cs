@@ -1,5 +1,4 @@
-﻿using Catalog.Core.Abstractions;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Api;
 

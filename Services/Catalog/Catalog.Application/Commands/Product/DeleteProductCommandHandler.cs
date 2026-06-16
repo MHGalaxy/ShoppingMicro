@@ -2,7 +2,7 @@
 using MapsterMapper;
 using MediatR;
 
-namespace Catalog.Application.Queries.Product;
+namespace Catalog.Application.Commands.Product;
 
 public class DeleteProductCommand : IRequest<bool>
 {
