@@ -1,8 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Basket.Core.Repositories;
+using Basket.Infrastructure.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Basket.Infrastructure;
 
@@ -12,10 +11,10 @@ public static class InfrastructureServicesRegisteration
     {
         services.AddStackExchangeRedisCache(options =>
         {
-            // The configuration will be read from appsettings.json
             options.Configuration = configuration.GetConnectionString("Redis");
-            // An optional instance name to prefix your cache keys
-            options.InstanceName = "MyApp_";
         });
+
+        // Register Repositories
+        services.AddScoped<IBasketRepository, BasketRepository>();  
     }
 }
