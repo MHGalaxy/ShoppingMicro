@@ -51,7 +51,7 @@ public class DiscountRepository(IConfiguration configuration)
     public async Task<bool> UpdateDiscount(Coupon coupon)
     {
         await using var connection = new NpgsqlConnection(_connectionString);
-        const string sql = "UPDATE Coupon SET ProductName=@ProductName, ProductId=@ProductId, Description=@Description, Amount = @Amount WHERE Id = @Id";
+        const string sql = "UPDATE Coupon SET ProductName = @ProductName, ProductId = @ProductId, Description = @Description, Amount = @Amount WHERE Id = @Id";
         var parameters = new { coupon.ProductName, coupon.ProductId, coupon.Description, coupon.Amount, coupon.Id };
         var affected = await connection.ExecuteAsync(sql, parameters);
         return affected > 0;
