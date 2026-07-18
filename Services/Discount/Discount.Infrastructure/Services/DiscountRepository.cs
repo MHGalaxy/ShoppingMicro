@@ -10,7 +10,7 @@ public class DiscountRepository(IConfiguration configuration)
     : IDiscountRepository
 {
     private readonly string? _connectionString = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-    public async Task<Coupon> GetDiscount(string productId)
+    public async Task<Coupon> GetDiscountByProductId(string productId)
     {
         await using var connection = new NpgsqlConnection(_connectionString);
         const string sql = "SELECT * FROM Coupon WHERE ProductId = @ProductId";
@@ -25,7 +25,7 @@ public class DiscountRepository(IConfiguration configuration)
         }; ;
     }
 
-    public async Task<Coupon> GetDiscountByName(string productName)
+    public async Task<Coupon> GetDiscountByProductName(string productName)
     {
         await using var connection = new NpgsqlConnection(_connectionString);
         const string sql = "SELECT * FROM Coupon WHERE ProductName = @ProductName";
@@ -57,7 +57,7 @@ public class DiscountRepository(IConfiguration configuration)
         return affected > 0;
     }
 
-    public async Task<bool> DeleteDiscount(string productId)
+    public async Task<bool> DeleteDiscountByProductId(string productId)
     {
         await using var connection = new NpgsqlConnection(_connectionString);
         const string sql = "DELETE FROM Coupon WHERE ProductId = @ProductId";
@@ -65,7 +65,7 @@ public class DiscountRepository(IConfiguration configuration)
         return affected > 0;
     }
 
-    public async Task<bool> DeleteDiscountByName(string productName)
+    public async Task<bool> DeleteDiscountByProductName(string productName)
     {
         await using var connection = new NpgsqlConnection(_connectionString);
         const string sql = "DELETE FROM Coupon WHERE ProductName = @ProductName";
