@@ -1,25 +1,38 @@
+using Discount.Api;
+using Discount.Application;
+using Discount.Infrastructure;
+using Discount.Core;
 using Discount.Infrastructure.Extensions;
+using Discount.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Register all services 
+builder.Services.ConfigureApplicationServices();
+builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+builder.Services.ConfigureCoreServices();
+builder.Services.ConfigureApiServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Migrate the database
 app.MigrateDatabase<Program>();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseDeveloperExceptionPage();
+    // app.MapOpenApi();
 }
 
-app.UseAuthorization();
+app.UseRouting();
+app.MapGrpcService<DiscountService>();
 
-app.MapControllers();
+app.Map("/", async context =>
+{
+    await context.Response.WriteAsync("Communication with gRPC Discount Service");
+});
+
+//app.UseAuthorization();
+//app.MapControllers();
 
 app.Run();

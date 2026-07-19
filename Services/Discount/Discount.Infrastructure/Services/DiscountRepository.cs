@@ -22,7 +22,7 @@ public class DiscountRepository(IConfiguration configuration)
             ProductId = "",
             Description = "",
             Amount = 0,
-        }; ;
+        }; 
     }
 
     public async Task<Coupon> GetDiscountByProductName(string productName)

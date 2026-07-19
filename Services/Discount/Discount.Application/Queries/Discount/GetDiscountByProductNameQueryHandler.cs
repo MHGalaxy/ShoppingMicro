@@ -6,19 +6,19 @@ using MediatR;
 
 namespace Discount.Application.Queries.Discount;
 
-public class GetDiscountByNameQuery : IRequest<CouponModel>
+public class GetDiscountByProductNameQuery : IRequest<CouponModel>
 {
     public string ProductName { get; set; }
-    public GetDiscountByNameQuery(string productName)
+    public GetDiscountByProductNameQuery(string productName)
     {
         ProductName = productName;
     }
 }
 
-public class GetDiscountByNameQueryHandler(IDiscountRepository discountRepository, IMapper mapper)
-    : IRequestHandler<GetDiscountByNameQuery, CouponModel>
+public class GetDiscountByProductNameQueryHandler(IDiscountRepository discountRepository, IMapper mapper)
+    : IRequestHandler<GetDiscountByProductNameQuery, CouponModel>
 {
-    public async Task<CouponModel> Handle(GetDiscountByNameQuery request, CancellationToken cancellationToken)
+    public async Task<CouponModel> Handle(GetDiscountByProductNameQuery request, CancellationToken cancellationToken)
     {
         var entity = await discountRepository.GetDiscountByProductName(request.ProductName);
 

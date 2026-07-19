@@ -10,13 +10,13 @@ public class DiscountService(IMediator mediator) : DiscountProtoService.Discount
 {
     public override async Task<CouponModel> GetDiscountByProductId(GetDiscountByProductIdRequest request, ServerCallContext context)
     {
-        var query = new GetDiscountByNameQuery(request.ProductId);
+        var query = new GetDiscountByProductNameQuery(request.ProductId);
         return await mediator.Send(query);
     }
 
     public override async Task<CouponModel> GetDiscountByProductName(GetDiscountByProductNameRequest request, ServerCallContext context)
     {
-        var query = new GetDiscountByNameQuery(request.ProductName);
+        var query = new GetDiscountByProductNameQuery(request.ProductName);
         return await mediator.Send(query);
     }
 
